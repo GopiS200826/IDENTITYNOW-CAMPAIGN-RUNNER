@@ -1,0 +1,28 @@
+name: IdentityNow Campaign Runner
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - campaign.txt
+
+jobs:
+  run-campaign:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Install Podman
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y podman
+
+    - name: Build Campaign Runner Image
+      run: |
+        podman build -t campaign-runner .
+
+    - name: Execute Campaign Script in Container
+      run: |
+        podman run --rm -v ${{ github.workspace }}:/app campaign-runner
