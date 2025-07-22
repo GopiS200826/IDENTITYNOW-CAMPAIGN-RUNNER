@@ -3,8 +3,7 @@ name: IdentityNow Campaign Runner
 on:
   push:
     branches: [ master ]
-    paths:
-      - campaign.txt
+   
 
 jobs:
   run-campaign:
