@@ -22,6 +22,7 @@ jobs:
       run: |
         podman build -t campaign-runner .
 
-    - name: Execute Campaign Script in Container
+    - name: Run campaign-runner
       run: |
-        podman run --rm -v ${{ github.workspace }}:/app campaign-runner
+        podman run --rm -v ${{ github.workspace }}:/app:Z campaign-runner
+      
