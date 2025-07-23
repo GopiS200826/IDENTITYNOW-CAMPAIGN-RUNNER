@@ -24,7 +24,7 @@ jobs:
 
     - name: Run campaign-runner
       run: |
-        podman run --rm -v "C:\Users\gopi2\cert\identitynow-campaign-runner:/app:Z" campaign-runner bash /app/run.sh
+        podman run --rm -v /c/Users/gopi2/cert/identitynow-campaign-runner:/app:Z campaign-runner bash /app/run.sh
 
 
       
