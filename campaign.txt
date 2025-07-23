@@ -1,5 +1,3 @@
-client_id=2c23a7d015074d588d036af66c74cc65
-client_secret=5278b5c3e20a29a7de7e9745babc437909ce93e82a3c57e8e1a4f320237588c2
 identity_name=ksteggles9@tamu.edu
 reviewer_name=gopi200826.gopi200826
 access_profile_names=ad-auth test

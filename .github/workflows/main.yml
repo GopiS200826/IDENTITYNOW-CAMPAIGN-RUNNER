@@ -23,4 +23,9 @@ jobs:
 
     - name: Run campaign-runner
       run: |
-        podman run --rm -v ${{ github.workspace }}:/app:Z campaign-runner bash /app/run.sh
+        podman run --rm \
+          -v ${{ github.workspace }}:/app:Z \
+          -e client_id="${{ secrets.CLIENT_ID }}" \
+          -e client_secret="${{ secrets.CLIENT_SECRET }}" \
+          -e BASE_URL="${{ secrets.BASE_URL }}" \
+          campaign-runner bash /app/run.sh

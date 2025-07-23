@@ -1,9 +1,18 @@
 import requests
 import json
-import time  # For wait before activation
+import time
+import os
+
+# Fetch credentials and base URL from environment variables
+client_id = os.getenv("client_id")
+client_secret = os.getenv("client_secret")
+BASE_URL = os.getenv("BASE_URL")
+
+print("client_id =", client_id)
+print("client_secret =", client_secret[:4] + "..." if client_secret else None)
+print("BASE_URL =", BASE_URL)
 
 # Configuration
-BASE_URL = "https://devrel-ga-14630.api.identitynow-demo.com"
 INPUT_FILE = "campaign.txt"
 
 # ----------------------------
@@ -120,7 +129,7 @@ def resolve_access_profiles(profile_names_str):
     return profile_ids
 
 # ----------------------------
-# Create and Activate Campaign
+# Create and Activate Campaign with 10 seconds wait before activation
 # ----------------------------
 def create_and_activate_campaign(identity_id, reviewer_id, reviewer_name, access_profile_ids, name, description, query):
     payload = {
@@ -181,10 +190,8 @@ if __name__ == "__main__":
         print("No valid inputs. Exiting.")
         exit()
 
-    client_id = inputs.get("client_id")
-    client_secret = inputs.get("client_secret")
-    if not client_id or not client_secret:
-        print("Missing client_id or client_secret in input file.")
+    if not client_id or not client_secret or not BASE_URL:
+        print("Missing client_id, client_secret, or BASE_URL environment variables.")
         exit()
 
     TOKEN = get_token(client_id, client_secret)
