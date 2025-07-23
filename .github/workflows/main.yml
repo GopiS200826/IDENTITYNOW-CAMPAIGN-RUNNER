@@ -24,5 +24,6 @@ jobs:
 
     - name: Run campaign-runner
       run: |
-        podman run --rm -v ${{ github.workspace }}:/app:Z campaign-runner
+        podman run --rm -v "$PWD:/app:Z" campaign-runner
+
       
