@@ -1,5 +1,6 @@
 import requests
 import json
+import time  # For wait before activation
 
 # Configuration
 BASE_URL = "https://devrel-ga-14630.api.identitynow-demo.com"
@@ -153,6 +154,9 @@ def create_and_activate_campaign(identity_id, reviewer_id, reviewer_name, access
     if response.status_code in [200, 201]:
         campaign_id = response.json().get("id")
         print(f"Campaign created with ID: {campaign_id}")
+
+        print("Waiting 10 seconds before activation...")
+        time.sleep(10)
 
         print("Activating campaign...")
         activation = requests.post(
