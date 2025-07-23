@@ -2,10 +2,16 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
-COPY campaign.py .
-COPY campaign.txt .
-COPY run.sh .
+# Install required Python packages
+RUN pip install --no-cache-dir requests
 
+# Copy your scripts
+COPY run.sh ./run.sh
+COPY campaign.py ./campaign.py
+COPY campaign.txt ./campaign.txt
+
+# Make sure your script is executable
 RUN chmod +x run.sh
 
-ENTRYPOINT ["./run.sh"]
+# Default command
+CMD ["./run.sh"]
