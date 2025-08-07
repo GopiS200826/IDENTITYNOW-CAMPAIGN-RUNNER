@@ -17,7 +17,7 @@ INPUT_FILE = "campaign.txt"
 
 # ----------------------------
 # Get OAuth2 Token Function
-# ---------------------------
+# --------------------------
 def get_token(client_id, client_secret):
     token_url = f"{BASE_URL}/oauth/token"
     params = {
